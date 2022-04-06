@@ -8,35 +8,68 @@ var filename = process.argv[2]
 var fileextension = process.argv[4]
 var filecontent = process.argv[3]
 
-if(filename===undefined){
-    var randomNumber = Math.floor(Math.random() * 1999);
-    filename = 'f2d_'+randomNumber
-}
+if(process.argv[2]==='-q'){
 
-if(fileextension===undefined){
+    const d = new Date();
+    let hour = d.getHours();
+    let minutes = d.getMinutes();
     fileextension = 'txt'
-}
+    filename = 'quickf2d_'+hour+'_'+minutes
+    filecontent = process.argv[3]
 
-if(filecontent===undefined){
-    filecontent='delete_this_to_start'
-}
+    fs.writeFileSync(desktopDir+filename+'.'+fileextension, filecontent);
 
-
-fs.writeFileSync(desktopDir+filename+'.'+fileextension, filecontent);
-
-try {
-
-    setTimeout(() => {
- 
-        exec('code . '+desktopDir+filename+'.'+fileextension, (err, stdout, stderr) => {
-            if (err) {
-              // node couldn't execute the command
-              return;
-            }
-          });
+    try {
     
-    }, 1200);
+        setTimeout(() => {
+     
+            exec('code . '+desktopDir+filename+'.'+fileextension, (err, stdout, stderr) => {
+                if (err) {
+                  // node couldn't execute the command
+                  return;
+                }
+              });
+        
+        }, 1200);
+        
+    } catch (error) {
+        console.log(error)
+    }
+
+}else{
+
+
+    if(filename===undefined){
+        var randomNumber = Math.floor(Math.random() * 1999);
+        filename = 'f2d_'+randomNumber
+    }
     
-} catch (error) {
-    console.log(error)
+    if(fileextension===undefined){
+        fileextension = 'txt'
+    }
+    
+    if(filecontent===undefined){
+        filecontent='delete_this_to_start'
+    }
+    
+    
+    fs.writeFileSync(desktopDir+filename+'.'+fileextension, filecontent);
+    
+    try {
+    
+        setTimeout(() => {
+     
+            exec('code . '+desktopDir+filename+'.'+fileextension, (err, stdout, stderr) => {
+                if (err) {
+                  // node couldn't execute the command
+                  return;
+                }
+              });
+        
+        }, 1200);
+        
+    } catch (error) {
+        console.log(error)
+    }
+
 }
