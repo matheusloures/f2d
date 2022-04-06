@@ -1,0 +1,14 @@
+{
+  "name": "f2d",
+  "version": "1.0.3",
+  "description": "File2Desktop. Simply write a quick File to your desktop using your command line.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords":["file to desktop", "files","generate","quick","desktop"],
+  "bin":"index.js",
+  "repository":"https://github.com/matheusloures/f2d",
+  "author": "Matheus Loures",
+  "license": "MIT"
+}
